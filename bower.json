@@ -6,7 +6,9 @@
     "Ilya Dmitriev <fakefreerun@gmail.com>"
   ],
   "description": "AngularJS directive that display a custom context menu when user triggers a right-click event.",
-  "main": "[\"src/rc-context-menu,js\"]",
+  "main": [
+    "src/rc-context-menu.js"
+  ],
   "moduleType": [
     "globals"
   ],
