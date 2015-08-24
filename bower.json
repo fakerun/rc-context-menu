@@ -1,0 +1,29 @@
+{
+  "name": "rc-context-menu",
+  "version": "0.0.0",
+  "homepage": "https://github.com/fakerun/rc-context-menu",
+  "authors": [
+    "Ilya Dmitriev <fakefreerun@gmail.com>"
+  ],
+  "description": "AngularJS directive that display a custom context menu when user triggers a right-click event.",
+  "main": [
+    "src/rc-context-menu.js"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "context-menu"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": ">=1.2.18"
+  }
+}
