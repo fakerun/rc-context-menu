@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS rc-context-menu</title>
+</head>
+<body ng-controller="DemoController as demoCtrl">
+
+    <div style="height: 400px; width: 300px; background-color: lightblue" rc-context-menu-area>
+        Click to open context menu
+
+        <rc-context-menu>
+            <rc-context-menu-item>
+                First action
+            </rc-context-menu-item>
+            <rc-context-menu-item>
+                Second action
+            </rc-context-menu-item>
+            <div class="divider"></div>
+            <rc-context-menu-item>
+                Third action
+            </rc-context-menu-item>
+
+        </rc-context-menu>
+    </div>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../src/rc-context-menu.js"></script>
+    <script src="../examples/demo.js"></script>
+</body>
+</html>
