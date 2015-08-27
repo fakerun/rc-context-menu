@@ -3,6 +3,8 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>AngularJS rc-context-menu</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="../src/rc-context-menu.css">
+
 </head>
 <body ng-controller="DemoController as demoCtrl">
 
@@ -10,9 +12,13 @@
         Click to open context menu
 
         <rc-context-menu>
+            <rc-context-menu-title>
+                Some title
+            </rc-context-menu-title>
             <rc-context-menu-item>
                 First action
             </rc-context-menu-item>
+            <rc-context-menu-divider></rc-context-menu-divider>
             <rc-context-menu-item>
                 Second action
             </rc-context-menu-item>
