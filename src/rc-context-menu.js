@@ -30,7 +30,7 @@ angular.module('rc.contextMenu', [])
 
                         var left = event.clientX + 'px',
                             top = event.clientY + 'px';
-                        console.log(contextMenu);
+
                         contextMenu.css({visibility: 'visible', left: left, top: top});
                     } else if(scope.isOpen) {
                         hideContextMenu();
@@ -56,7 +56,14 @@ angular.module('rc.contextMenu', [])
             restrict: 'E',
             transclude: true,
             replace: true,
-            template: "<div class='rc-context-menu'><ul ng-transclude></ul></div>",
+            template: "<div class='rc-context-menu'><ul ng-class='{\"context-menu-disabled\": isDisabled}' ng-transclude></ul></div>",
+            scope: {
+                isDisabled: "=ngDisabled"
+            },
+            controller: function($scope) {
+                var self = this;
+                self.isDisabled = $scope.isDisabled;
+            },
             link: function(scope, element, attrs, contextMenuAreaCtrl) {
 
             }
@@ -82,7 +89,11 @@ angular.module('rc.contextMenu', [])
             restrict: "E",
             transclude: true,
             replace: true,
-            template: "<li ng-transclude></li>",
+            require: "^rcContextMenu",
+            scope: {
+                isDisabled: "=ngDisabled"
+            },
+            template: "<li ng-class='{\"disabled\": isDisabled}' ng-transclude></li>",
             link: function(scope, element, attrs, contextMenuCtrl) {
 
             }
