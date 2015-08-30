@@ -15,15 +15,15 @@
             <rc-context-menu-title>
                 Some title
             </rc-context-menu-title>
-            <rc-context-menu-item ng-click="demoCtrl.firstActionSelected()" ng-disabled="false">
+            <rc-context-menu-item on-select="demoCtrl.firstActionSelected('first')" ng-disabled="false">
                 First action
             </rc-context-menu-item>
             <rc-context-menu-divider></rc-context-menu-divider>
-            <rc-context-menu-item ng-click="demoCtrl.secondActionSelected()" ng-disabled="true">
+            <rc-context-menu-item on-select="demoCtrl.secondActionSelected()" ng-disabled="true">
                 Second action
             </rc-context-menu-item>
             <rc-context-menu-divider></rc-context-menu-divider>
-            <rc-context-menu-item ng-click="demoCtrl.thirdActionSelected()" ng-disabled="false">
+            <rc-context-menu-item on-select="demoCtrl.thirdActionSelected('third')" ng-disabled="false">
                 Third action
             </rc-context-menu-item>
 

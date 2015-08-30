@@ -91,11 +91,15 @@ angular.module('rc.contextMenu', [])
             replace: true,
             require: "^rcContextMenu",
             scope: {
-                isDisabled: "=ngDisabled"
+                isDisabled: "=ngDisabled",
+                callback: "&onSelect"
             },
-            template: "<li ng-class='{\"disabled\": isDisabled}' ng-transclude></li>",
+            template: "<li ng-class='{\"disabled\": isDisabled}' ng-click=\"itemWasClicked()\" ng-transclude></li>",
             link: function(scope, element, attrs, contextMenuCtrl) {
-
+                scope.itemWasClicked = function() {
+                    if(!scope.isDisabled && !contextMenuCtrl.isDisabled)
+                        scope.callback();
+                }
             }
         }
     });
