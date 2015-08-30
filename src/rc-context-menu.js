@@ -3,6 +3,9 @@ angular.module('rc.contextMenu', [])
         return {
             restrict: "A",
             replace: true,
+            scope: {
+
+            },
             link: function(scope, element, attrs) {
                 scope.isOpen = false;
 
@@ -63,9 +66,6 @@ angular.module('rc.contextMenu', [])
             controller: function($scope) {
                 var self = this;
                 self.isDisabled = $scope.isDisabled;
-            },
-            link: function(scope, element, attrs, contextMenuAreaCtrl) {
-
             }
         };
     })
