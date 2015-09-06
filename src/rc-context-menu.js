@@ -5,10 +5,10 @@ angular.module('rc.contextMenu', [])
             replace: true,
             link: function(scope, element, attrs) {
                 var isOpen = false,
-                    isAbsolutePosition = isPositionAbsolute(attrs['rc-position']),
+                    isAbsolutePosition = isPositionAbsolute(attrs['rcPosition']),
                     contextMenu = angular.element(element.children('.rc-context-menu'));
 
-                contextMenu.css('display', isAbsolutePosition ? 'absolute' : 'fixed');
+                contextMenu.css({'position': isAbsolutePosition ? 'absolute' : 'fixed'});
 
                 function isPositionAbsolute(position) {
                     return typeof position != 'undefined' && position === 'absolute';
@@ -43,14 +43,27 @@ angular.module('rc.contextMenu', [])
 
                 function getCoordinates(event, isAbsolutePosition) {
                     if(isAbsolutePosition) {
+                        var elementOffset = getElementOffset(element[0]);
                         return {
-                            left: (event.pageX - element.offset().left) + 'px',
-                            top: (event.pageY - element.offset().top) + 'px'
+                            left: (event.pageX - elementOffset.left) + 'px',
+                            top: (event.pageY - elementOffset.top) + 'px'
                         };
                     } else {
                         return {
                             left: event.clientX + 'px',
                             top: event.clientY + 'px'
+                        };
+                    }
+
+                    function getElementOffset(element)
+                    {
+                        var de = document.documentElement;
+                        var box = element.getBoundingClientRect();
+                        var top = box.top + window.pageYOffset - de.clientTop;
+                        var left = box.left + window.pageXOffset - de.clientLeft;
+                        return {
+                            top: top,
+                            left: left
                         };
                     }
                 }
