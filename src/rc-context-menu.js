@@ -5,10 +5,17 @@ angular.module('rc.contextMenu', [])
             replace: true,
             link: function(scope, element, attrs) {
                 var isOpen = false,
-                    isAbsolutePosition = isPositionAbsolute(attrs['rcPosition']),
-                    contextMenu = angular.element(element.children('.rc-context-menu'));
+                    contextMenu = angular.element(element.children('.rc-context-menu')),
+                    isAbsolutePosition;
 
-                contextMenu.css({'position': isAbsolutePosition ? 'absolute' : 'fixed'});
+                if(isPositionAbsolute(attrs['rcPosition'])) {
+                    isAbsolutePosition = true;
+                    contextMenu.css({'position': 'absolute'});
+                    angular.element(element[0]).css({'position': 'relative'});
+                } else {
+                    isAbsolutePosition = false;
+                    contextMenu.css({'position': 'fixed'});
+                }
 
                 function isPositionAbsolute(position) {
                     return typeof position != 'undefined' && position === 'absolute';
