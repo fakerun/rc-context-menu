@@ -1,14 +1,4 @@
-.position-relative {
-    position: relative;
-}
-
-.inv-context-menu-area {
-    cursor: context-menu!important;
-}
-
 .rc-context-menu {
-    position: fixed;
-    left: -50px;
     visibility: hidden;
     z-index: 10;
     text-align: left;
