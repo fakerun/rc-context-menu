@@ -1,0 +1,58 @@
+.rc-context-menu {
+    visibility: hidden;
+    z-index: 10;
+    text-align: left;
+}
+
+.rc-context-menu > ul {
+    margin: 0;
+    padding: 5px 0px;
+    list-style: outside none none;
+    background-color: #FFF;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.176);
+    font-size: 13px;
+    background-clip: padding-box;
+    display: inline-block;
+}
+
+.rc-context-menu > ul > li:not(.divider) {
+    display: block;
+    cursor: pointer;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857;
+    color: #333;
+    white-space: nowrap;
+    background: none repeat scroll 0px 0px transparent;
+}
+
+.rc-context-menu > ul > li.divider {
+    display: block;
+    height: 1px;
+    margin: 5px 5px;
+    background-color: #d2dadc;
+}
+
+.rc-context-menu > ul > li.disabled,
+.rc-context-menu > ul > li.disabled i,
+.rc-context-menu > ul.context-menu-disabled > li:not(.divider) {
+    color: #929292 !important;
+    cursor: not-allowed;
+}
+
+.rc-context-menu > ul > li.context-menu-title {
+    font-weight: bold;
+}
+
+.rc-context-menu > ul:not(.context-menu-disabled) > li:not(.context-menu-title):not(.divider):not(.disabled):hover {
+    text-decoration: none;
+    color: #FFF;
+    background-color: #009ab3;
+}
+
+.rc-context-menu > ul:not(.context-menu-disabled) > li:not(.context-menu-title):not(.divider):not(.disabled):hover i {
+    color: #FFF !important;
+}

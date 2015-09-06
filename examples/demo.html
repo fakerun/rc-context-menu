@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS rc-context-menu</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="../src/rc-context-menu.css">
+
+</head>
+<body ng-controller="DemoController as demoCtrl">
+<button ng-click="isFirstButtonDisabled = !isFirstButtonDisabled">Toggle first button</button>
+<button ng-click="isSecondButtonDisabled = !isSecondButtonDisabled">Toggle second button</button>
+<button ng-click="isThirdButtonDisabled = !isThirdButtonDisabled">Toggle third button</button>
+    <div style="height: 400px; width: 300px; background-color: lightblue; overflow: scroll" rc-context-menu-area>
+        Click to open context menu
+        <rc-context-menu>
+            <rc-context-menu-title>
+                Some title
+            </rc-context-menu-title>
+            <rc-context-menu-item on-select="demoCtrl.firstActionSelected('first')" ng-disabled="isFirstButtonDisabled">
+                First action
+            </rc-context-menu-item>
+            <rc-context-menu-divider></rc-context-menu-divider>
+            <rc-context-menu-item on-select="demoCtrl.secondActionSelected()" ng-disabled="isSecondButtonDisabled">
+                Second action
+            </rc-context-menu-item>
+            <rc-context-menu-divider></rc-context-menu-divider>
+            <rc-context-menu-item on-select="demoCtrl.thirdActionSelected('third')" ng-disabled="isThirdButtonDisabled">
+                Third action
+            </rc-context-menu-item>
+
+        </rc-context-menu>
+
+    </div>
+<br/>
+    <div style="height: 400px; width: 300px; background-color: lightblue; overflow: scroll;" rc-context-menu-area rc-position="absolute">
+        Click to open context menu
+
+        <rc-context-menu ng-disabled="true">
+            <rc-context-menu-title>
+                Some title
+            </rc-context-menu-title>
+            <rc-context-menu-item on-select="demoCtrl.firstActionSelected('first')" ng-disabled="false">
+                First action
+            </rc-context-menu-item>
+            <rc-context-menu-divider></rc-context-menu-divider>
+            <rc-context-menu-item on-select="demoCtrl.secondActionSelected()" ng-disabled="true">
+                Second action
+            </rc-context-menu-item>
+            <rc-context-menu-divider></rc-context-menu-divider>
+            <rc-context-menu-item on-select="demoCtrl.thirdActionSelected('third')" ng-disabled="false">
+                Third action
+            </rc-context-menu-item>
+
+        </rc-context-menu>
+
+    </div>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../src/rc-context-menu.js"></script>
+    <script src="../examples/demo.js"></script>
+</body>
+</html>
