@@ -3,16 +3,19 @@ angular.module('rc.contextMenu', [])
         return {
             restrict: "A",
             replace: true,
-            scope: {
-
-            },
             link: function(scope, element, attrs) {
-                scope.isOpen = false;
+                var isOpen = false,
+                    isAbsolutePosition = isPositionAbsolute(attrs['rc-position']),
+                    contextMenu = angular.element(element.children('.rc-context-menu'));
 
-                var contextMenu = angular.element(element.children('.rc-context-menu'));
+                contextMenu.css('display', isAbsolutePosition ? 'absolute' : 'fixed');
+
+                function isPositionAbsolute(position) {
+                    return typeof position != 'undefined' && position === 'absolute';
+                }
 
                 function closeContextMenuOnDesktop(event) {
-                    if(scope.isOpen && !isRightClick(event))
+                    if(isOpen && !isRightClick(event))
                         hideContextMenu();
                 }
 
@@ -27,23 +30,35 @@ angular.module('rc.contextMenu', [])
 
                 function toggleContextMenu(event) {
                     if(element[0].contains(event.target)) {
-                        scope.isOpen = true;
+                        isOpen = true;
                         event.preventDefault();
                         event.stopPropagation();
 
-                        var left = event.clientX + 'px',
-                            top = event.clientY + 'px';
-
-                        contextMenu.css({visibility: 'visible', left: left, top: top});
-                    } else if(scope.isOpen) {
+                        var coordinates = getCoordinates(event, isAbsolutePosition);
+                        contextMenu.css({visibility: 'visible', left: coordinates.left, top: coordinates.top});
+                    } else if(isOpen) {
                         hideContextMenu();
+                    }
+                }
+
+                function getCoordinates(event, isAbsolutePosition) {
+                    if(isAbsolutePosition) {
+                        return {
+                            left: (event.pageX - element.offset().left) + 'px',
+                            top: (event.pageY - element.offset().top) + 'px'
+                        };
+                    } else {
+                        return {
+                            left: event.clientX + 'px',
+                            top: event.clientY + 'px'
+                        };
                     }
                 }
 
                 window.addEventListener("contextmenu", toggleContextMenu, false);
 
                 function hideContextMenu() {
-                    scope.isOpen = false;
+                    isOpen = false;
                     contextMenu.css({visibility: 'hidden'});
                 }
 
