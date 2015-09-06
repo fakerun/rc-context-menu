@@ -33,7 +33,10 @@ angular.module('rc.contextMenu', [])
                         return event.button == 2;
                 }
 
-                window.addEventListener("click", closeContextMenuOnDesktop, false);
+                function hideContextMenu() {
+                    isOpen = false;
+                    contextMenu.css({visibility: 'hidden'});
+                }
 
                 function toggleContextMenu(event) {
                     if(element[0].contains(event.target)) {
@@ -61,26 +64,21 @@ angular.module('rc.contextMenu', [])
                             top: event.clientY + 'px'
                         };
                     }
-
-                    function getElementOffset(element)
-                    {
-                        var de = document.documentElement;
-                        var box = element.getBoundingClientRect();
-                        var top = box.top + window.pageYOffset - de.clientTop;
-                        var left = box.left + window.pageXOffset - de.clientLeft;
-                        return {
-                            top: top,
-                            left: left
-                        };
-                    }
                 }
 
+                function getElementOffset(element) {
+                    var de = document.documentElement;
+                    var box = element.getBoundingClientRect();
+                    var top = box.top + window.pageYOffset - de.clientTop;
+                    var left = box.left + window.pageXOffset - de.clientLeft;
+                    return {
+                        top: top,
+                        left: left
+                    };
+                }
+
+                window.addEventListener("click", closeContextMenuOnDesktop, false);
                 window.addEventListener("contextmenu", toggleContextMenu, false);
-
-                function hideContextMenu() {
-                    isOpen = false;
-                    contextMenu.css({visibility: 'hidden'});
-                }
 
                 scope.$on('$destroy', function () {
                     window.removeEventListener("click", closeContextMenuOnDesktop, false);
